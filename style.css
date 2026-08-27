@@ -1,15 +1,17 @@
+body {
+  margin: 0;
+}
+
 #display {
   position: relative;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background-color: aqua;
 }
 
 #advertisement {
   width: 100%;
   height: 100%;
-  background-color: green;
 }
 
 #advertisement video {
