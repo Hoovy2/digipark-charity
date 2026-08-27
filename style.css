@@ -23,10 +23,12 @@ body {
 #donationOverlay {
   position: absolute;
   background-color: #dddddd;
-  padding: 0.5em;
-  font-size: 4rem;
   border-radius: 20px;
-  box-shadow: 2px 4px 8px;
+  box-shadow: 2px 4px 8px #dddddd;
   left: 50%;
   bottom: 10%;
+}
+
+#donationOverlay {
+  font-size: 4rem
 }
