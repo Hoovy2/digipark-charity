@@ -9,10 +9,15 @@
   
   <body>
     <div id="display">
-      <video autoplay muted loop>
-        <source src="Hyrax.mp4">
-        Your browser does not support the video tag.
-      </video>
+      <div id="advertisement">
+        <video autoplay muted loop >
+          <source src="Hyrax.mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div id="donationOverlay">
+        <p>Haiiiiiii</p>
+      </div>
     </div>
     
     <script>
@@ -23,6 +28,7 @@
 
           if (msg === "SCAN") {
             console.log("Scan recieved!");
+            document.getElementById("donationOverlay").textContent = "+$2.00"
           }
         }
         catch (error) {
