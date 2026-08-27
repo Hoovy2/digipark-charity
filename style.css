@@ -25,9 +25,9 @@ body {
   background-color: #dddddd;
   padding: 2rem;
   font-size: 4rem;
-  font-family: "Novecento Sans" Sans-serif;
+  font-family: "Novecento Sans", Sans-serif;
   border-radius: 20px;
   left: 50%;
   bottom: 10%;
-  transform: translateX(-50%, -50%);
+  transform: translateX(-50%);
 }
