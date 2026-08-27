@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DigiPark Charity Display</title>
+    <link rel = "stylesheet" href = "style.css">
   </head>
   
   <body>
-    <p>Bleeughh,,,,,,</p>
-
-    <p id="status">I haven't recieved a scan yet!</p>
-
+    <div id="display">
+      <video autoplay muted loop>
+        <source src="Hyrax.mp3">
+      </video>
+    </div>
+    
     <script>
       async function checkForScan() {
         try {
@@ -18,7 +21,6 @@
           const msg = await response.text();
 
           if (msg === "SCAN") {
-            document.getElementById("status").textContent = "I have recieved a scan!";
             console.log("Scan recieved!");
           }
         }
