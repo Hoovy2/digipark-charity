@@ -22,8 +22,9 @@ body {
 
 #donationOverlay {
   position: absolute;
-  background-color: #dddddd;
   padding: 2rem;
+  background-color: #6472b5;
+  color: #ffffff;
   font-size: 4rem;
   font-family: "Novecento Sans", Sans-serif;
   border-radius: 20px;
