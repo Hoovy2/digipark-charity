@@ -23,13 +23,10 @@ body {
 #donationOverlay {
   position: absolute;
   background-color: #dddddd;
+  font-size: 4rem;
   border-radius: 20px;
   box-shadow: 2px 4px 8px #dddddd;
   left: 50%;
   bottom: 10%;
-}
-
-#donationOverlay p {
-  font-size: 16rem;
-  background-color: #ffffff;
+  transform: translateX(-50%, -50%);
 }
