@@ -13,7 +13,7 @@
 
     <script>
       try {
-        const response = await fetch("https://digipark-charity.harvey-brewis.workers.dev/scan");
+        const response = fetch("https://digipark-charity.harvey-brewis.workers.dev/scan");
         const msg = response.text();
         console.log(response);
 
