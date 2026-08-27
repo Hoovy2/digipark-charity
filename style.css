@@ -29,6 +29,7 @@ body {
   bottom: 10%;
 }
 
-#donationOverlay {
+#donationOverlay p {
   font-size: 4rem
+  background-color: #ffffff;
 }
