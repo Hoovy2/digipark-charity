@@ -23,7 +23,9 @@ body {
 #donationOverlay {
   position: absolute;
   background-color: #dddddd;
+  padding: 2rem;
   font-size: 4rem;
+  font-family: "Novecento Sans" Sans-serif;
   border-radius: 20px;
   box-shadow: 2px 4px 8px #dddddd;
   left: 50%;
