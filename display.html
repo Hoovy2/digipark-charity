@@ -27,14 +27,9 @@
       let visibility;
 
       function updateSettings() {
-        console.log("I'm updating settings!");
-        
         visibility = localStorage.getItem("dailyCounterVisibility") || "always";
         total = Number(localStorage.getItem("dailyTotal")) || 0;
-
-        console.log(visibility);
-        console.log(total);
-
+        
         if (visibility === "always") {
           overlay.style.display = "block";
         }
@@ -42,6 +37,8 @@
         else if (visibility === "never") {
           overlay.style.display = "none";
         }
+
+        document.getElementById("donationOverlay").textContent = "Daily Total: $" + total + ".00";
       }
 
       function scan(scans) {
