@@ -21,7 +21,38 @@
     </div>
     
     <script>
-      let total = 0;
+      const overlay = document.getElementById("donationOverlay");
+      
+      let total;
+      let visibility;
+
+      updateSettings();
+
+      function updateSettings() {
+        visibility = localStorage.getItem("dailyCounterVisibility") || "always";
+        total = Number(localStorage.getItem("dailyTotal")) || 0;
+
+        if (visibility === "always") {
+          overlay.style.display = "block";
+        }
+
+        else if (visibility === "never") {
+          overlay.style.display = "none";
+        }
+      }
+
+      function scan(scans) {
+        total += 2 * scans;
+        document.getElementById("donationOverlay").textContent = "Daily Total: $" + total + ".00";
+        localStorage.setItem("dailyTotal", total);
+
+        if (visibility === "onClick") {
+          overlay.style.display = "block";
+          setTimeout(() => {
+            overlay.style.display = "none";
+          }, 5000);
+        }
+      }
       
       async function checkForScan() {
         try {
@@ -29,9 +60,7 @@
           const data = await response.json();
 
           if (data.scans > 0) {
-            total += 2 * data.scans;
-
-            document.getElementById("donationOverlay").textContent = "Daily Total: $" + total + ".00";
+            scan(data.scans);
           }
         }
         catch (error) {
@@ -40,6 +69,7 @@
       }
 
       setInterval(checkForScan, 1000);
+      setInterval(updateSettings, 1000);
     </script>
   </body>
 </html>
