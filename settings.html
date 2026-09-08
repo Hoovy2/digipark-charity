@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Settings</title>
+    </head>
+    <body>
+        
+        <fieldset id="dailyCounterVisibility">
+            <legend>
+                Display daily counter
+            </legend>
+
+            <input type="radio" name="dailyCounterVisibility" value="always" checked>
+            <label>Always</label>
+            <input type="radio" name="dailyCounterVisibility" value="onScan">
+            <label>On QR Scan</label>
+            <input type="radio" name="dailyCounterVisibility" value="never">
+            <label>Never</label>
+        </fieldset>
+
+        <br>
+
+        <input type="number" id="setDailyCounter" name="dailyCounterVal">
+        <button id="setDailyCounterButton">Set daily counter</button>
+
+        <script>
+            document.getElementById("dailyCounterVisibility").addEventListener("change", () => {
+                const selectedOption = document.querySelector('input[name="dailyCounterVisibility"]:checked').value;
+
+                localStorage.setItem("dailyCounterVisibility", selectedOption);
+            });
+
+            document.getElementById("setDailyCounterButton").addEventListener("click", () => {
+                localStorage.setItem("dailyTotal", document.getElementById("setDailyCounter").value);
+            })
+        </script>
+    </body>
+</html>
