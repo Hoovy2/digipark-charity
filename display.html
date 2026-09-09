@@ -10,7 +10,7 @@
   <body>
     <div id="display">
       <div id="advertisement">
-        <video autoplay muted loop >
+        <video autoplay muted loop id="advertisementVideo">
           <source src="Hyrax.mp4">
           Your browser does not support the video tag.
         </video>
@@ -19,16 +19,22 @@
         Daily Total: $0.00
       </div>
     </div>
+
+    <input type="file" id="fileUpload" accept="video/*" hidden>
     
     <script>
       const overlay = document.getElementById("donationOverlay");
+      const fileUpload = document.getElementById("fileUpload");
+      const video = document.getElementById("advertisementVideo");
       
       let total;
       let visibility;
+      let uploadEnabled;
 
       function updateSettings() {
         visibility = localStorage.getItem("dailyCounterVisibility") || "always";
         total = Number(localStorage.getItem("dailyTotal")) || 0;
+        uploadEnabled = localStorage.getItem("uploadEnabled") === "true";
         
         if (visibility === "always") {
           overlay.style.display = "block";
@@ -39,6 +45,13 @@
         }
 
         document.getElementById("donationOverlay").textContent = "Daily Total: $" + total + ".00";
+
+        if (uploadEnabled) {
+          fileUpload.hidden = false;
+        }
+        else {
+          fileUpload.hidden = true;
+        }
       }
 
       function scan(scans) {
@@ -46,7 +59,7 @@
         document.getElementById("donationOverlay").textContent = "Daily Total: $" + total + ".00";
         localStorage.setItem("dailyTotal", total);
 
-        if (visibility === "onClick") {
+        if (visibility === "onScan") {
           overlay.style.display = "block";
           setTimeout(() => {
             overlay.style.display = "none";
@@ -68,8 +81,24 @@
         }
       }
 
-      setInterval(checkForScan, 1000);
+      fileUpload.addEventListener("change", () => {
+        const file = fileUpload.files[0];
+
+        if (!file) {
+          return;
+        }
+
+        const videoURL = URL.createObjectURL(file);
+        video.src = videoURL;
+        
+        video.play();
+      })
+
       setInterval(updateSettings, 1000);
+      setInterval(checkForScan, 1000);
+
+      updateSettings();
+      checkForScan();
     </script>
   </body>
 </html>
