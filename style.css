@@ -32,3 +32,9 @@ body {
   bottom: 10%;
   transform: translateX(-50%);
 }
+
+#fileUpload {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+}
