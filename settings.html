@@ -25,15 +25,24 @@
         <input type="number" id="setDailyCounter" name="dailyCounterVal">
         <button id="setDailyCounterButton">Set daily counter</button>
 
+        <br><br>
+
+        <input type="checkbox" id="enableUpload">
+        <label>Enable background video upload on display</label>
+
         <script>
             document.getElementById("dailyCounterVisibility").addEventListener("change", () => {
-                const selectedOption = document.querySelector('input[name="dailyCounterVisibility"]:checked').value;
-
-                localStorage.setItem("dailyCounterVisibility", selectedOption);
+                localStorage.setItem("dailyCounterVisibility", document.querySelector('input[name="dailyCounterVisibility"]:checked').value);
             });
 
             document.getElementById("setDailyCounterButton").addEventListener("click", () => {
                 localStorage.setItem("dailyTotal", document.getElementById("setDailyCounter").value);
+            })
+
+            const uploadEnabled = document.getElementById("enableUpload")
+
+            uploadEnabled.addEventListener("change", () => {
+                localStorage.setItem("uploadEnabled", uploadEnabled.value)
             })
         </script>
     </body>
