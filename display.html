@@ -31,6 +31,7 @@
       const fileUpload = document.getElementById("fileUpload");
       const video = document.getElementById("advertisementVideo");
       const thanksOverlay = document.getElementById("thanksOverlay");
+      const advertisement = document.getElementById("advertisement");
       
       let total;
       let visibility;
@@ -73,9 +74,9 @@
           }, 5000);
         }
 
-        thanksOverlay.style.display = block;
-        setTimout(() => {
-          thanksOverlay.style.display = "none";
+        thanksOverlay.style.hidden = false;
+        setTimeout(() => {
+          thanksOverlay.style.hidden = true;
         }, 5000);
       }
       
