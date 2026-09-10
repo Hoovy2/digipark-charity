@@ -43,6 +43,7 @@ body {
 #thanksOverlay {
   position: absolute;
   text-align: center;
+  transform: translate(-50%, -50%);
 }
 
 #thanksOverlay img {
