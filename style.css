@@ -44,4 +44,10 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
+  text-align: center;
+}
+
+#thanksOverlay img {
+  max-width: 60vw;
+  max-height: 60vw;
 }
