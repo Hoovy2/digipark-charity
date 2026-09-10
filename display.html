@@ -18,6 +18,10 @@
       <div id="donationOverlay">
         Daily Total: $0.00
       </div>
+      <div id="thanksOverlay" hidden>
+        <h1>Thank you for your donation!</h1>
+        <img src="orrca.png">
+      </div>
     </div>
 
     <input type="file" id="fileUpload" accept="video/*" hidden>
@@ -26,6 +30,7 @@
       const overlay = document.getElementById("donationOverlay");
       const fileUpload = document.getElementById("fileUpload");
       const video = document.getElementById("advertisementVideo");
+      const thanksOverlay = document.getElementById("thanksOverlay");
       
       let total;
       let visibility;
@@ -65,6 +70,11 @@
             overlay.style.display = "none";
           }, 5000);
         }
+
+        thanksOverlay.style.display = block;
+        setTimout(() => {
+          thanksOverlay.style.display = "none";
+        }, 5000);
       }
       
       async function checkForScan() {
