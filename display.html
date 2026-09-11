@@ -38,7 +38,7 @@
       let uploadEnabled;
 
       function updateSettings() {
-        visibility = localStorage.getItem("dailyCounterVisibility") || "always";
+        visibility = localStorage.getItem("dailyCounterVisibility") || "never";
         total = Number(localStorage.getItem("dailyTotal")) || 0;
         uploadEnabled = localStorage.getItem("uploadEnabled") === "true";
         
