@@ -33,8 +33,18 @@ h1 {
   font-family: "Novecento Sans", Sans-serif;
   border-radius: 20px;
   left: 50%;
-  bottom: 10%;
+  bottom: 0%;
   transform: translateX(-50%);
+
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+
+#donationOverlay.visible {
+  opacity: 1;
+
+  transform: translate(0, -10%);
 }
 
 #fileUpload {
@@ -52,9 +62,7 @@ h1 {
   text-align: center;
 
   opacity: 0;
-
   transition: opacity 0.5s ease, transform 0.5s ease;
-
   pointer-events: none;
 }
 
