@@ -60,6 +60,8 @@
           fileUpload.hidden = true;
           advertisement.hidden = false;
         }
+
+        console.log("I'm updating settings");
       }
 
       function scan(scans) {
@@ -78,6 +80,8 @@
         setTimeout(() => {
           thanksOverlay.classList.remove("visible");
         }, 8000);
+
+        console.log("I'm processing a scan");
       }
       
       async function checkForScan() {
@@ -92,6 +96,8 @@
         catch (error) {
           console.error(error);
         }
+
+        console.log("I'm checking for a scan");
       }
 
       fileUpload.addEventListener("change", () => {
