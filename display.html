@@ -43,11 +43,11 @@
         uploadEnabled = localStorage.getItem("uploadEnabled") === "true";
         
         if (visibility === "always") {
-          overlay.style.display = "block";
+          overlay.classList.add("visible");
         }
 
         else if (visibility === "never") {
-          overlay.style.display = "none";
+          overlay.style.classList.remove("visible");
         }
 
         overlay.textContent = "Daily Total: $" + total + ".00";
@@ -70,9 +70,9 @@
         localStorage.setItem("dailyTotal", total);
 
         if (visibility === "onScan") {
-          overlay.style.display = "block";
+          overlay.classList.add("visible");
           setTimeout(() => {
-            overlay.style.display = "none";
+            overlay.classList.remove("visible");
           }, 8000);
         }
 
