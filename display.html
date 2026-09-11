@@ -27,13 +27,13 @@
     <input type="file" id="fileUpload" accept="video/*" hidden>
     
     <script>
-      const overlay = document.getElementById("donationOverlay");
+      const donationOverlay = document.getElementById("donationOverlay");
       const fileUpload = document.getElementById("fileUpload");
       const video = document.getElementById("advertisementVideo");
       const thanksOverlay = document.getElementById("thanksOverlay");
       const advertisement = document.getElementById("advertisement");
 
-      console.log(overlay);
+      console.log(donationOverlay);
       
       let total;
       let visibility;
@@ -45,14 +45,14 @@
         uploadEnabled = localStorage.getItem("uploadEnabled") === "true";
         
         if (visibility === "always") {
-          overlay.classList.add("visible");
+          donationOverlay.classList.add("visible");
         }
 
         else if (visibility === "never") {
-          overlay.classList.remove("visible");
+          donationOverlay.classList.remove("visible");
         }
 
-        overlay.textContent = "Daily Total: $" + total + ".00";
+        donationOverlay.textContent = "Daily Total: $" + total + ".00";
 
         if (uploadEnabled) {
           fileUpload.hidden = false;
@@ -70,9 +70,9 @@
         localStorage.setItem("dailyTotal", total);
 
         if (visibility === "onScan") {
-          overlay.classList.add("visible");
+          donationOverlay.classList.add("visible");
           setTimeout(() => {
-            overlay.classList.remove("visible");
+            donationOverlay.classList.remove("visible");
           }, 8000);
         }
 
