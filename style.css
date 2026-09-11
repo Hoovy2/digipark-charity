@@ -44,7 +44,7 @@ h1 {
 #donationOverlay.visible {
   opacity: 1;
 
-  transform: translate(-5%, 0);
+  transform: translate(0, 10%);
 }
 
 #fileUpload {
