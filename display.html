@@ -50,7 +50,7 @@
           overlay.style.display = "none";
         }
 
-        document.getElementById("donationOverlay").textContent = "Daily Total: $" + total + ".00";
+        overlay.textContent = "Daily Total: $" + total + ".00";
 
         if (uploadEnabled) {
           fileUpload.hidden = false;
@@ -74,9 +74,9 @@
           }, 5000);
         }
 
-        thanksOverlay.hidden = false;
+        thanksOverlay.classList.add("visible");
         setTimeout(() => {
-          thanksOverlay.hidden = true;
+          thanksOverlay.classList.remove("visible");
         }, 5000);
       }
       
