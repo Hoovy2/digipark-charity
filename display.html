@@ -67,6 +67,8 @@
         document.getElementById("donationOverlay").textContent = "Daily Total: $" + total + ".00";
         localStorage.setItem("dailyTotal", total);
 
+        donationOverlay.querySelector("h1").textContent = "Thank you for your donation,\n" + donation.name + "!";
+
         if (visibility === "onScan") {
           donationOverlay.classList.add("visible");
           setTimeout(() => {
@@ -87,8 +89,8 @@
           const response = await fetch("https://digipark-charity.harvey-brewis.workers.dev/status");
           const data = await response.json();
 
-          if (data.scans > 0) {
-            scan(data.scans);
+          if (data.donation) {
+              scan(data.donation);
           }
         }
         catch (error) {
