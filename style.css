@@ -25,7 +25,7 @@ h1 {
 }
 
 #donationOverlay {
-  position: absolute;
+position: absolute;
   padding: 2rem;
   background-color: #6472b5;
   color: #ffffff;
@@ -34,7 +34,8 @@ h1 {
   border-radius: 20px;
   left: 50%;
   bottom: 5%;
-  transform: translateX(-50%);
+
+  transform: translate(-50%, 20px);
 
   opacity: 0;
   transition: opacity 0.5s ease, transform 0.5s ease;
@@ -43,8 +44,7 @@ h1 {
 
 #donationOverlay.visible {
   opacity: 1;
-
-  transform: translate(0, 10%);
+  transform: translate(-50%, 0);
 }
 
 #fileUpload {
@@ -68,7 +68,6 @@ h1 {
 
 #thanksOverlay.visible {
   opacity: 1;
-
   transform: translate(-50%, -50%);
 }
 
