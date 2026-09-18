@@ -62,8 +62,8 @@
         }
       }
 
-      function scan(scans) {
-        total += 2 * scans;
+      function scan(donation) {
+        total += 2;
         document.getElementById("donationOverlay").textContent = "Daily Total: $" + total + ".00";
         localStorage.setItem("dailyTotal", total);
 
