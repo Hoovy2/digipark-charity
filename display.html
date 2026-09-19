@@ -79,8 +79,7 @@
         thanksOverlayText.textContent = donation.name + "!";
 
         if (donation.photo) {
-          console.log(donation.photo);
-          fish.style.backgroundImage = `url("${myDataURL}")`;
+          fish.style.backgroundImage = `url("${donation.photo}")`;
           animateFish(fishWrapper)
         }
 
