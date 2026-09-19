@@ -39,7 +39,7 @@
       const thanksOverlay = document.getElementById("thanksOverlay");
       const advertisement = document.getElementById("advertisement");
       const thanksOverlayText = document.getElementById("thanksOverlayText");
-      const fishImage = document.getElementById("fishImage");
+      const fish = document.querySelector("div.fish");
       const fishWrapper = document.querySelector("div.fishWrapper");
       
       let total;
@@ -80,7 +80,7 @@
 
         if (donation.photo) {
           console.log(donation.photo);
-          fishImage.src = donation.photo;
+          fish.style.backgroundImage = donation.photo;
           animateFish(fishWrapper)
         }
 
@@ -97,8 +97,8 @@
         }, 8000);
       }
 
-      function animateFish(fish) {
-        fish.style.transform = "translate(50px, 20px)";
+      function animateFish(fishWrapper) {
+        fishWrapper.style.transform = "translate(50px, 20px)";
       }
       
       async function checkForScan() {
