@@ -77,4 +77,24 @@ h1 {
   max-height: 60vw;
 }
 
+.fishWrapper {
+  filter: drop-shadow(3px 0px 0px black) drop-shadow(-3px 0px 0px black) drop-shadow(0px 3px 0px black) drop-shadow(0px -3px 0px black);
 
+  position: absolute;
+
+  transition: transform 4s;
+}
+
+.fish {
+  width: 500px;
+  height: 400px;
+
+  background-image: url("orrca.png");
+  background-size: cover;
+  background-position: center;
+
+  mask-image: url("fih.svg");
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+}

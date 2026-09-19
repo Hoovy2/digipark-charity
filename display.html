@@ -9,6 +9,11 @@
   
   <body>
     <div id="display">
+      <div class="fishWrapper">
+        <div class="fish">
+          <img id="fishImage" src="fih.svg">
+        </div>
+      </div>
       <div id="advertisement">
         <video autoplay muted loop id="advertisementVideo">
           <source src="33.mp4">
@@ -34,6 +39,7 @@
       const thanksOverlay = document.getElementById("thanksOverlay");
       const advertisement = document.getElementById("advertisement");
       const thanksOverlayText = document.getElementById("thanksOverlayText");
+      const fishImage = document.getElementById("fishImage");
       
       let total;
       let visibility;
@@ -69,7 +75,11 @@
         document.getElementById("donationOverlay").textContent = "Daily Total: $" + total + ".00";
         localStorage.setItem("dailyTotal", total);
 
-        thanksOverlayText.textContent = donation.name;
+        thanksOverlayText.textContent = donation.name + "!";
+
+        if (donation.photo) {
+          fishImage.src = donation.photo;
+        }
 
         if (visibility === "onScan") {
           donationOverlay.classList.add("visible");
