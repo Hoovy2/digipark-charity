@@ -40,6 +40,7 @@
       const advertisement = document.getElementById("advertisement");
       const thanksOverlayText = document.getElementById("thanksOverlayText");
       const fishImage = document.getElementById("fishImage");
+      const fishWrapper = document.getElementById("fishWrapper");
       
       let total;
       let visibility;
@@ -78,7 +79,9 @@
         thanksOverlayText.textContent = donation.name + "!";
 
         if (donation.photo) {
+          console.log(donation.photo);
           fishImage.src = donation.photo;
+          animateFish(fishWrapper)
         }
 
         if (visibility === "onScan") {
@@ -92,8 +95,10 @@
         setTimeout(() => {
           thanksOverlay.classList.remove("visible");
         }, 8000);
+      }
 
-        console.log("I'm processing a scan");
+      function animateFish(fish) {
+        fish.style.transform = "translate(50px, 20px)";
       }
       
       async function checkForScan() {
@@ -108,8 +113,6 @@
         catch (error) {
           console.error(error);
         }
-
-        console.log("I'm checking for a scan");
       }
 
       fileUpload.addEventListener("change", () => {
