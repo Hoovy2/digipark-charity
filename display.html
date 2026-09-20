@@ -9,10 +9,32 @@
   
   <body>
     <div id="display">
-      <div class="fishWrapper">
-        <div class="fish">
-          <img id="fishImage" src="fih.svg">
-        </div>
+      <div class="fishWrapper" data-numMoves="0" style="z-index: 1;">
+        <div class="fish" style="mask-image: url('AngelFish.svg');"></div>
+      </div>
+      <div class="fishWrapper" data-numMoves="0" style="z-index: 2;">
+        <div class="fish" style="mask-image: url('AngelFish.svg');"></div>
+      </div>
+      <div class="fishWrapper" data-numMoves="0" style="z-index: 3;">
+        <div class="fish" style="mask-image: url('AngelFish.svg');"></div>
+      </div>
+      <div class="fishWrapper" data-numMoves="0" style="z-index: 4;">
+        <div class="fish" style="mask-image: url('fih.svg');"></div>
+      </div>
+      <div class="fishWrapper" data-numMoves="0" style="z-index: 5;">
+        <div class="fish" style="mask-image: url('fih.svg');"></div>
+      </div>
+      <div class="fishWrapper" data-numMoves="0" style="z-index: 6;">
+        <div class="fish" style="mask-image: url('fih.svg');"></div>
+      </div>
+      <div class="fishWrapper" data-numMoves="0" style="z-index: 7;">
+        <div class="fish"></div>
+      </div>
+      <div class="fishWrapper" data-numMoves="0" style="z-index: 8;">
+        <div class="fish"></div>
+      </div>
+      <div class="fishWrapper" data-numMoves="0" style="z-index: 9;">
+        <div class="fish"></div>
       </div>
       <div id="advertisement">
         <video autoplay muted loop id="advertisementVideo">
@@ -39,8 +61,15 @@
       const thanksOverlay = document.getElementById("thanksOverlay");
       const advertisement = document.getElementById("advertisement");
       const thanksOverlayText = document.getElementById("thanksOverlayText");
-      const fish = document.querySelector("div.fish");
-      const fishWrapper = document.querySelector("div.fishWrapper");
+      const fish = document.querySelectorAll("div.fish");
+      const fishWrapper = document.querySelectorAll("div.fishWrapper");
+
+      const numFish = 6;
+      const maxMovements = 4;
+      const randomness = 30;
+
+      const donationQueue = [];
+      let fishAnimationRunning = false;
       
       let total;
       let visibility;
@@ -79,25 +108,73 @@
         thanksOverlayText.textContent = donation.name + "!";
 
         if (donation.photo) {
-          fish.style.backgroundImage = `url("${donation.photo}")`;
-          animateFish(fishWrapper)
+          fish.forEach((fih) => {
+            fih.style.backgroundImage = `url("${donation.photo}")`;
+          })
+          fishWrapper.forEach((fihWrapper) => {
+            fihWrapper.dataset.numMovements = 0;
+            animateFish(fihWrapper);
+          })
         }
 
         if (visibility === "onScan") {
           donationOverlay.classList.add("visible");
           setTimeout(() => {
             donationOverlay.classList.remove("visible");
-          }, 8000);
+          }, 10000);
         }
 
         thanksOverlay.classList.add("visible");
         setTimeout(() => {
           thanksOverlay.classList.remove("visible");
-        }, 8000);
+        }, 10000);
       }
 
-      function animateFish(fishWrapper) {
-        fishWrapper.style.transform = "translate(50px, 20px)";
+      function animateFish(fihWrapper) {
+        const fih = fihWrapper.querySelector("div.fish");
+        const index = Number(fihWrapper.style.zIndex);
+        let numMovements = Number(fihWrapper.dataset.numMovements);
+
+        let dir = (index + numMovements) % 2 * 2 - 1;
+        const height = (index / numFish).toFixed(2);
+        let random1 = Math.floor(Math.random() * randomness) - randomness / 2;
+        const random2 = Math.floor(Math.random() * randomness) - randomness / 2;
+        const random3 = Math.floor(Math.random() * 2500) + 1500;
+
+        console.log("I'm fish no. " + fih.style.zIndex + " and I'm doing move no. " + numMovements);
+
+        if (numMovements === 0) {
+          thanksOverlay.style.zIndex = 999;
+          random1 = 35;
+          setTimeout(() => {
+            fih.style.opacity = "1";
+          }, 500)
+          setTimeout(() => {
+            thanksOverlay.style.zIndex = 0;
+          }, 3000);
+        }
+
+        if (numMovements === maxMovements) {
+          fih.style.transform = `scaleX(calc(0 - ${dir}))`;
+          fihWrapper.style.transform = `translate(5000px, calc(500px * ${random1}))`;
+          numMovements = 0;
+          fihWrapper.dataset.numMovements = numMovements;
+
+          setTimeout(() => {
+            fihWrapper.style.transform = `translate(-50%, -50%)`;
+            fih.style.opacity = "0";
+          }, 6000);
+          return;
+        } else {
+          fih.style.transform = `scaleX(calc(${dir} * -1))`;
+          fihWrapper.style.transform = `translate(calc((25vw + ${random1}vw) * ${dir} - 50%), calc(100vh * ${height} + ${random2}vh - 50vh - 50%))`;
+        }
+
+        fihWrapper.style.transition = `transform ${random3}ms ease-in-out 500ms`;
+
+        numMovements++;
+        fihWrapper.dataset.numMovements = numMovements;
+        setTimeout(animateFish, 3500 + random3, fihWrapper);
       }
       
       async function checkForScan() {

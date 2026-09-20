@@ -4,31 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DigiPark Charity</title>
+    <link rel = "stylesheet" href = "style.css">
   </head>
   
   <body>
-    <p>Bleeeuuuugghhhhh</p>
+    <div id="display">
+      <div id="advertisement">
+        <video autoplay muted loop id="advertisementVideo">
+          <source src="33.mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <div id="inputPage">
+        <p>Please enter your name and take a photo (optional).</p>
 
-    <h1>Thank you!</h1>
+        <input type="text" id="name" placeholder="Your name">
 
-    <p>Please enter your name and take a photo (optional).</p>
+        <br><br>
 
-    <input type="text" id="name" placeholder="Your name">
+        <input
+          type="file"
+          id="photo"
+          accept="image/*"
+          capture="user"
+        >
 
-    <br><br>
+        <br><br>
 
-    <input
-      type="file"
-      id="photo"
-      accept="image/*"
-      capture="user"
-    >
+        <button id="submit">Submit</button>
 
-    <br><br>
-
-    <button id="submit">Submit</button>
-
-    <p id="status"></p>
+        <p id="status"></p>
+      </div>
+    </div>
 
     <script>
       const nameInput = document.getElementById("name");
