@@ -13,7 +13,7 @@
         <div class="fish" style="mask-image: url('AngelFish.svg');"></div>
       </div>
       <div class="fishWrapper" data-numMoves="0" style="z-index: 2;">
-        <div class="fish" style="mask-image: url('AngelFish.svg');"></div>
+        <div class="fish" style="mask-image: url('fih.svg');"></div>
       </div>
       <div class="fishWrapper" data-numMoves="0" style="z-index: 3;">
         <div class="fish" style="mask-image: url('AngelFish.svg');"></div>
@@ -22,7 +22,7 @@
         <div class="fish" style="mask-image: url('fih.svg');"></div>
       </div>
       <div class="fishWrapper" data-numMoves="0" style="z-index: 5;">
-        <div class="fish" style="mask-image: url('fih.svg');"></div>
+        <div class="fish" style="mask-image: url('AngelFish.svg');"></div>
       </div>
       <div class="fishWrapper" data-numMoves="0" style="z-index: 6;">
         <div class="fish" style="mask-image: url('fih.svg');"></div>
@@ -64,10 +64,11 @@
       const fish = document.querySelectorAll("div.fish");
       const fishWrapper = document.querySelectorAll("div.fishWrapper");
 
-      const numFish = 6;
+      const numFish = 9;
       const maxMovements = 4;
       const randomness = 30;
 
+      // gotta make ts functional
       const donationQueue = [];
       let fishAnimationRunning = false;
       
@@ -153,6 +154,8 @@
             thanksOverlay.style.zIndex = 0;
           }, 3000);
         }
+
+        console.log(height);
 
         if (numMovements === maxMovements) {
           fih.style.transform = `scaleX(calc(0 - ${dir}))`;
