@@ -68,9 +68,20 @@
       const maxMovements = 4;
       const randomness = 30;
 
-      // gotta make ts functional
       const donationQueue = [];
       let fishAnimationRunning = false;
+
+      function processNextDonation() {
+        console.log("processing next donation")
+
+        if (fishAnimationRunning || donationQueue.length === 0) {
+          return;
+        }
+
+        fishAnimationRunning = true;
+        const donation = donationQueue.shift(); // FIFO
+        scan(donation);
+      }
       
       let total;
       let visibility;
@@ -142,8 +153,6 @@
         const random2 = Math.floor(Math.random() * randomness) - randomness / 2;
         const random3 = Math.floor(Math.random() * 2500) + 1500;
 
-        console.log("I'm fish no. " + fih.style.zIndex + " and I'm doing move no. " + numMovements);
-
         if (numMovements === 0) {
           thanksOverlay.style.zIndex = 999;
           random1 = 35;
@@ -155,18 +164,22 @@
           }, 3000);
         }
 
-        console.log(height);
-
         if (numMovements === maxMovements) {
           fih.style.transform = `scaleX(calc(0 - ${dir}))`;
-          fihWrapper.style.transform = `translate(5000px, calc(500px * ${random1}))`;
+          fihWrapper.style.transform = `translate(calc(5000px * ${dir}), calc(500px * ${random1}))`;
           numMovements = 0;
           fihWrapper.dataset.numMovements = numMovements;
 
           setTimeout(() => {
             fihWrapper.style.transform = `translate(-50%, -50%)`;
             fih.style.opacity = "0";
+
+            setTimeout(() => {
+              fishAnimationRunning = false;
+              processNextDonation();
+            }, 3000);
           }, 6000);
+
           return;
         } else {
           fih.style.transform = `scaleX(calc(${dir} * -1))`;
@@ -186,7 +199,13 @@
           const data = await response.json();
 
           if (data.donation) {
-              scan(data.donation);
+            console.log("donation being processed");
+
+            donationQueue.push(data.donation);
+
+            console.log(fishAnimationRunning);
+
+            processNextDonation();
           }
         }
         catch (error) {
