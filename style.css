@@ -145,6 +145,6 @@ h1 {
 }
 
 #qrOverlay img {
-  max-width: 8vw;
-  max-height: 8vw;
+  max-width: 30vw;
+  max-height: 30vw;
 }
