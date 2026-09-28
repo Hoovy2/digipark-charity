@@ -1,3 +1,10 @@
+:root {
+  --fishWidth: 20rem;
+  --fishHeight: 16rem;
+  --fishBorderWidth: 1rem;
+}
+
+
 body {
   margin: 0;
 }
@@ -11,7 +18,6 @@ h1 {
   position: relative;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
 }
 
 #advertisement {
@@ -78,22 +84,14 @@ h1 {
 }
 
 .fishWrapper {
-  width: 20rem;
-  height: 16rem;
+  width: calc(var(--fishWidth) + var(--fishBorderWidth));
+  height: calc(var(--fishHeight) + var(--fishBorderWidth));
 
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
 
-  filter:
-    drop-shadow(8px 0px 0px black)
-    drop-shadow(-8px 0px 0px black)
-    drop-shadow(0px 8px 0px black)
-    drop-shadow(0px -8px 0px black);
-
-  transition: transform 3s ease-in-out 500ms;
-  z-index: 1;
+  transition-timing-function: cubic-bezier(0.05, 0.5, 0.95, 0.5);
 }
 
 .fishWrapper * {
@@ -101,19 +99,36 @@ h1 {
 }
 
 .fish {
-  width: 20rem;
-  height: 16rem;
+  width: var(--fishWidth);
+  height: var(--fishHeight);
+
+  left: calc(var(--fishWidth) * -0.5);
+  top: calc(var(--fishHeight) * -0.5);
 
   background-image: url("orrca.png");
-  background-size: cover;
+  background-size: contain;
+
   background-position: center;
 
   mask-image: url("ButterflyFish.svg");
-  mask-size: contain;
   mask-repeat: no-repeat;
-  mask-position: center;
+  mask-position: 0 0;
+  mask-size: 100% 100%;
+}
 
-  opacity: 0;
+.fishBorder {
+  width: calc(var(--fishWidth) + var(--fishBorderWidth));
+  height: calc(var(--fishHeight) + var(--fishBorderWidth));
+
+  left: calc((var(--fishWidth) + var(--fishBorderWidth)) * -0.5);
+  top: calc((var(--fishHeight) + var(--fishBorderWidth)) * -0.5);
+
+  background-color: black;
+
+  mask-image: url("ButterflyFish.svg");
+  mask-repeat: no-repeat;
+  mask-position: 0 0;
+  mask-size: 100% 100%;
 }
 
 #inputPage {

@@ -16,11 +16,11 @@
         </video>
       </div>
       <div id="inputPage">
-        <p>Please enter your name and take a photo (optional).</p>
+        <p>Please enter your name and attach a photo!</p>
 
         <input type="text" id="name" placeholder="Your name">
 
-        <br><br>
+        <br>
 
         <input
           type="file"
@@ -29,7 +29,7 @@
           capture="user"
         >
 
-        <br><br>
+        <br>
 
         <button id="submit">Submit</button>
 
@@ -61,8 +61,12 @@
             }
           );
 
+          setTimeout(() => {
+            submitButton.disabled = false;
+          }, 1000);
+
           if (response.ok) {
-            statusText.textContent = "Thank you!";
+            statusText.textContent = "Sent! Thank you!";
           }
           else {
             statusText.textContent = "Something went wrong...";
@@ -84,6 +88,8 @@
         }
 
         statusText.textContent = "Sending...";
+
+        submitButton.disabled = true;
 
         // gotta convert to data url :P
         if (photo) {
